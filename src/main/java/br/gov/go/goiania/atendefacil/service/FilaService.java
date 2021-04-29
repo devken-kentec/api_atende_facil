@@ -88,8 +88,8 @@ public class FilaService {
 		return fr.findById(id);
 	}
 	
-	public Object[] contarAvaliacao() {
-		return fr.contarAvaliacao();
+	public Object[] contarAvaliacao(String cpfCnpj) {
+		return fr.contarAvaliacao(cpfCnpj);
 	}
 
 }

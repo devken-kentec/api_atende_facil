@@ -47,10 +47,13 @@ public class PainelService {
 	
 	@Autowired
 	private Painel06Repository pr06; 
+	
+	@Autowired
+	private DataService ds;
 		
 	//Funções Painel 01
 	public Iterable<Painel01> listarPainel01(){
-		return pr01.findByfive();
+		return pr01.findByfive(ds.dataPainel());
 	}
 	
 	public Optional<Painel01> listarChamada(){
@@ -79,7 +82,7 @@ public class PainelService {
 	
 	//Funções Painel 02
 	public Iterable<Painel02> listarPainel02(){
-		return pr02.findByfive();
+		return pr02.findByfive(ds.dataPainel());
 	}
 	
 	public Optional<Painel02> listarChamada2(){
@@ -108,7 +111,7 @@ public class PainelService {
 	
 	//Painel 03
 	public Iterable<Painel03> listarPainel03(){
-		return pr03.findByfive();
+		return pr03.findByfive(ds.dataPainel());
 	}
 	
 	public Optional<Painel03> listarChamada03(){
@@ -137,7 +140,7 @@ public class PainelService {
 	
 	//Funções Painel 04
 	public Iterable<Painel04> listarPainel04(){
-		return pr04.findByfive();
+		return pr04.findByfive(ds.dataPainel());
 	}
 	
 	public Optional<Painel04> listarChamada04(){
@@ -166,7 +169,7 @@ public class PainelService {
 	
 	//Funções Painel 05
 	public Iterable<Painel05> listarPainel05(){
-		return pr05.findByfive();
+		return pr05.findByfive(ds.dataPainel());
 	}
 	
 	public Optional<Painel05> listarChamada05(){
@@ -195,7 +198,7 @@ public class PainelService {
 	
 	//Funções Painel 06
 	public Iterable<Painel06> listarPainel06(){
-		return pr06.findByfive();
+		return pr06.findByfive(ds.dataPainel());
 	}
 	
 	public Optional<Painel06> listarChamada06(){

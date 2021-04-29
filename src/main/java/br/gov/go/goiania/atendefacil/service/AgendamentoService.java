@@ -84,7 +84,6 @@ public class AgendamentoService {
 			horaITM = horaITM + interVagas;
 			
 			anr.saveQueryNative(agendamento);
-			//System.out.println(agendamento);
 		}
 	}
 	
@@ -157,6 +156,26 @@ public class AgendamentoService {
 		
 		ar.save(agendamento);
 	}
+	
+	public void encaixeTecnico(Long id, String cpfCnpj) {
+
+		Contribuinte contribuinte = cr.findByCpfCnpj(cpfCnpj);
+		
+		DetalhamentoServico detalhamentoServico = dsr.findById(1L).orElseThrow(()->
+				new ResponseStatusException(HttpStatus.BAD_REQUEST, "Detalhamento de servico não encontrado")); 
+		
+		Agendamento agendamento = ar.findById(id).orElseThrow(()->
+				new ResponseStatusException(HttpStatus.BAD_REQUEST, "Agendamento não encontrado"));
+		
+		agendamento.setPrioridade("Em espera");
+		agendamento.setStatusAgendamento("Agendado");
+		agendamento.setContribuinte(contribuinte);
+		agendamento.setDetalhamentoServico(detalhamentoServico);
+		agendamento.setAceite(true);
+		
+		ar.save(agendamento);
+	}
+	
 	 
 	public String ajustaHora(Integer horaM) {
 		
@@ -176,6 +195,11 @@ public class AgendamentoService {
 		hora = h + ":" + m;
 		return hora;
 	}
-
-
+	
+	public void excluirAgendamento(Long gradeId) {
+		Optional<Grade> grade = gr.findById(gradeId);
+		if(grade.isPresent()) {
+			ar.excluirAgendamento(gradeId);
+		}
+	}
 }

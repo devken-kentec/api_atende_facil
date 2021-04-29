@@ -19,6 +19,13 @@ public class DataService {
 		return now;
 	}
 	
+	public LocalDateTime dataPainel() {
+		String dataSemFormato = this.dataHoje().toString();
+		String dataCerta = dataSemFormato+"T00:00:00.000000000";
+		LocalDateTime data = LocalDateTime.parse(dataCerta);
+		return data;
+	}
+	
 	public String dataAtual() {
 		LocalDateTime agora = LocalDateTime.now();
 	    DateTimeFormatter formatterData = DateTimeFormatter.ofPattern("dd/MM/yyyy");

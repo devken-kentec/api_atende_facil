@@ -81,6 +81,11 @@ public class AgendamentoController {
 		return as.listarAgendamento(page, size);
 	}
 	
+	@GetMapping("/encaixeTecnico/{id}/{cpfCnpj}")
+	public void incluirContribuinte(@PathVariable("id") Long id,  @PathVariable("cpfCnpj") String cpfCnpj) {
+		as.encaixeTecnico(id, cpfCnpj);
+	}
+	
 	@GetMapping("/mobile/consulta/{cpfCnpj}")
 	public ResponseEntity<List<Agendamento>> findByAgendamentoCpfCnpj(@PathVariable("cpfCnpj") String cpfCnpj){
 		return ResponseEntity.ok(as.findByAgendamentoCpfCnpj(cpfCnpj));
@@ -101,6 +106,12 @@ public class AgendamentoController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public void gerarFila(@PathVariable("id") Long id) {
 		as.gerarFila(id);
+	}
+	
+	@GetMapping("/exclusaoAgendamento/{gradeId}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void excluirAgendamentoGradeId(@PathVariable("gradeId") Long gradeId) {
+			as.excluirAgendamento(gradeId);
 	}
 	
 	@PatchMapping("/enviar")

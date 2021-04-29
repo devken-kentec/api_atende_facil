@@ -83,8 +83,8 @@ public class FilaController {
 		fs.gravar(fila);
 	}
 	
-	@GetMapping("/contarAvaliacao")
-	public ResponseEntity<Object[]> contarAvaliacao() {
-		return ResponseEntity.ok(fs.contarAvaliacao());
+	@GetMapping("/contarAvaliacao/{cpfCnpj}")
+	public ResponseEntity<Object[]> contarAvaliacao(@PathVariable("cpfCnpj") String cpfCnpj) {
+		return ResponseEntity.ok(fs.contarAvaliacao(cpfCnpj));
 	}
 }

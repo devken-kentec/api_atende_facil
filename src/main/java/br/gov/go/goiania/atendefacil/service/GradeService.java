@@ -84,6 +84,14 @@ public class GradeService {
 		}
 		
 	}
+	
+	public void liberarGrade(Long Id){
+		Optional<Grade> g = gr.findById(Id);
+		if(g.isPresent()) {
+			g.get().setGerado("n");
+			gr.save(g.get());
+		}
+	}
 
 	public List<Grade> buscaAvancada(String unidade, String dataInicial, String dataFinal, String servico) {
 		return gr.buscaAvancada(unidade, dataInicial, dataFinal, servico);

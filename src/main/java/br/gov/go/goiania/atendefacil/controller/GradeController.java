@@ -58,4 +58,10 @@ public class GradeController {
 	public void alterar(@RequestBody Grade grade) {
 		gs.alterar(grade);
 	}
+	
+	@GetMapping("/liberarGrade/{id}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void alterar(@PathVariable("id") Long Id) {
+		gs.liberarGrade(Id);
+	}
 }

@@ -1,14 +1,11 @@
 package br.gov.go.goiania.atendefacil.repository;
 
 import java.util.List;
-
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import br.gov.go.goiania.atendefacil.domain.Agendamento;
-
 
 @Repository
 public interface AgendamentoRepository extends JpaRepository<Agendamento, Long>{
@@ -46,5 +43,8 @@ public interface AgendamentoRepository extends JpaRepository<Agendamento, Long>{
 			+ "JOIN a.contribuinte c "
 			+ "WHERE UPPER(c.cpfCnpj) = UPPER(:cpfCnpj) AND a.statusAgendamento = 'Ativado'  ")
 	public List<Agendamento> findByAgendamentoCpfCnpjAtivado(@Param("cpfCnpj") String cpfCnpj);
+	
+	@Query(nativeQuery=true, value="DELETE FROM agendamento WHERE grade_id = (:gradeId) AND aceite is NULL ")
+	public void excluirAgendamento(@Param("gradeId") Long gradeId);
 	
 }

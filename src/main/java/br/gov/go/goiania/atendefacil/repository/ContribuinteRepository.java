@@ -25,4 +25,6 @@ public interface ContribuinteRepository extends JpaRepository<Contribuinte, Long
 			@Param("cpfCnpj") String cpfCnpj,
 			@Param("senha") String senha);
 	
+	public Contribuinte findByCpfCnpj(String cpfCnpj);
+	
 }
