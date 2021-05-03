@@ -15,7 +15,7 @@ public class DetalhamentoServico implements Serializable {
 	@Column(name="id", nullable = false)
 	private Long id;
 	
-	@Column(name="descricao", nullable = false, length = 30)
+	@Column(name="descricao", nullable = false, length = 100)
 	private String descricao;
 	
 	@Column(name="detalhamento", nullable = false, length = 100)

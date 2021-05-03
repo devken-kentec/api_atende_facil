@@ -28,7 +28,7 @@ public class Servidor implements Serializable {
 	@Column(name = "telefone", nullable = true, length = 20)
 	private String telefone;
 	
-	@Column(name = "email", nullable = true, length = 30)
+	@Column(name = "email", nullable = true, length = 50)
 	private String email;
 	
 	@Column(name = "status_servidor")
