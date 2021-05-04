@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.gov.go.goiania.atendefacil.domain.Grade;
+import br.gov.go.goiania.atendefacil.dto.GradeDto;
 import br.gov.go.goiania.atendefacil.service.GradeService;
 
 @RestController
@@ -52,6 +53,13 @@ public class GradeController {
 	public void gravar(@RequestBody Grade grade) {
 		gs.gravar(grade);
 	}
+	
+	@PostMapping("/multipla")
+	@ResponseStatus(HttpStatus.CREATED)
+	public void gravar(@RequestBody GradeDto gradeDto) {
+		gs.gravarGradeDemanda(gradeDto);
+	}
+	
 	
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)

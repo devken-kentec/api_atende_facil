@@ -18,7 +18,7 @@ public interface GradeRepository extends JpaRepository<Grade, Long> {
 			+ "JOIN g.calendario c "
 			+ "WHERE UPPER(u.descricao) = UPPER(:unidade) "
 			+ "AND c.dia BETWEEN :dataInicial AND :dataFinal "
-			+ "AND UPPER(s.descricao) LIKE UPPER(:servico) ")
+			+ "AND UPPER(s.descricao) LIKE UPPER(:servico) ORDER BY c.dia ASC ")
 	public List<Grade> buscaAvancada(
 			@Param("unidade") String unidade,
 			@Param("dataInicial") String dataInicial,

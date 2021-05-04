@@ -12,6 +12,7 @@ import br.gov.go.goiania.atendefacil.domain.Calendario;
 import br.gov.go.goiania.atendefacil.domain.Grade;
 import br.gov.go.goiania.atendefacil.domain.Servico;
 import br.gov.go.goiania.atendefacil.domain.Unidade;
+import br.gov.go.goiania.atendefacil.dto.GradeDto;
 import br.gov.go.goiania.atendefacil.repository.CalendarioRepository;
 import br.gov.go.goiania.atendefacil.repository.GradeRepository;
 import br.gov.go.goiania.atendefacil.repository.ServicoRepository;
@@ -60,6 +61,44 @@ public class GradeService {
 		gr.save(grade);
 	}
 	
+	public void gravarGradeDemanda(GradeDto gradeDto) {
+		
+		Servico servico = sr.findById(gradeDto.getServico()).orElseThrow(()->
+			new ResponseStatusException(HttpStatus.BAD_REQUEST, "Serviço não Encontrado"));
+
+		Unidade unidade = ur.findById(gradeDto.getUnidade()).orElseThrow(()->
+			new ResponseStatusException(HttpStatus.BAD_REQUEST, "Unidade não Encontrada"));
+		
+		for (Long i = gradeDto.getDataInicial(); i <= gradeDto.getDataFinal(); i++) {
+			
+			Calendario calendario =  cr.findById(i).orElseThrow(()->
+				new ResponseStatusException(HttpStatus.BAD_REQUEST, "Calendario não Encontrado"));
+			
+			Grade grade = new Grade();
+	
+			grade.setCalendario(calendario);
+			grade.setServico(servico);
+			grade.setUnidade(unidade);
+			grade.setConfigurado("c");
+			grade.setGerado("n");
+			grade.setCorrecaoHora(gradeDto.getCorrecaoHora());
+			grade.setIntervalo(gradeDto.getIntervalo());
+			grade.setQuantidade(gradeDto.getQuantidade());
+			grade.setHoraInicial(gradeDto.getHoraInicial());
+			grade.setHoraFinal(gradeDto.getHoraFinal());
+			
+			if(calendario.getObservacao().equals("Normal") ) {
+				gr.save(grade);
+			} else if (calendario.getObservacao().equals("Sábado")) {
+				grade.setCorrecaoHora(6);
+				grade.setIntervalo(30);
+				grade.setQuantidade(50);
+				grade.setHoraFinal("12:00");
+				gr.save(grade);
+			}
+		}
+	}
+	
 	public void alterar(Grade grade) {
 		
 		Optional<Grade> g = gr.findById(grade.getId());
@@ -76,8 +115,6 @@ public class GradeService {
 		grade.setCalendario(calendario);
 		grade.setServico(servico);
 		grade.setUnidade(unidade);
-		
-		
 		
 		if(g.isPresent()) {
 			gr.save(grade);

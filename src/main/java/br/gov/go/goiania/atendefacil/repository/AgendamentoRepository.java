@@ -15,7 +15,7 @@ public interface AgendamentoRepository extends JpaRepository<Agendamento, Long>{
 			+ "WHERE UPPER(g.unidade.descricao) LIKE UPPER(:unidade) "
 			+ "AND g.calendario.dia BETWEEN :dataInicial AND :dataFinal "
 			+ "AND UPPER(g.servico.descricao) LIKE UPPER(:servico) "
-			+ "AND UPPER(a.statusAgendamento) LIKE UPPER(:statusAgendamento) ")
+			+ "AND UPPER(a.statusAgendamento) LIKE UPPER(:statusAgendamento) ORDER BY a.horario ASC ")
 	public List<Agendamento> buscaAvancada(
 			@Param("unidade") String unidade,
 			@Param("dataInicial") String dataInicial,
