@@ -16,7 +16,7 @@ public interface Painel03Repository extends JpaRepository<Painel03, Long>{
 	 @Query("FROM Painel03 WHERE fila_id = (:filaId) ")
 	 public Optional<Painel03> findByFilaId(@Param("filaId") Long filaId);
 	 
-	 @Query(nativeQuery =true, value ="SELECT * FROM Painel_03 WHERE chamada > (:chamada) ORDER BY chamada DESC LIMIT 5")
+	 @Query(nativeQuery =true, value ="SELECT TOP 5 * FROM Painel_03 WHERE chamada > (:chamada) ORDER BY chamada DESC ")
 	 public Iterable<Painel03> findByfive(@Param("chamada") LocalDateTime chamada);
 	 
 	 @Query("FROM Painel03 WHERE chamada = (SELECT MAX(chamada) FROM Painel03) ")

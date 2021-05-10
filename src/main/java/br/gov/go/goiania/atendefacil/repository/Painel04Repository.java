@@ -1,6 +1,5 @@
 package br.gov.go.goiania.atendefacil.repository;
 
-
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -17,7 +16,7 @@ public interface Painel04Repository extends JpaRepository<Painel04, Long>{
 	 @Query("FROM Painel04 WHERE fila_id = (:filaId) ")
 	 public Optional<Painel04> findByFilaId(@Param("filaId") Long filaId);
 	 
-	 @Query(nativeQuery =true, value ="SELECT * FROM Painel_04 chamada > (:chamada) ORDER BY chamada DESC LIMIT 5")
+	 @Query(nativeQuery =true, value ="SELECT TOP 5 * FROM Painel_04 WHERE chamada > (:chamada) ORDER BY chamada DESC ")
 	 public Iterable<Painel04> findByfive(@Param("chamada") LocalDateTime chamada);
 	 
 	 @Query("FROM Painel04 WHERE chamada = (SELECT MAX(chamada) FROM Painel04) ")
