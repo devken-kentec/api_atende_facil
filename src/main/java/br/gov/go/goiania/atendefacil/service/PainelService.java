@@ -353,7 +353,7 @@ public class PainelService {
 	
 	public void som() {
 		try {
-		    File yourFile = new File("C:\\java-spring\\spring-workspace\\eatendefacil\\teste02.wav");
+		    File yourFile = new File("src\\main\\resources\\static\\teste02.wav");
 		    
 		    AudioInputStream stream;
 		    AudioFormat format;
