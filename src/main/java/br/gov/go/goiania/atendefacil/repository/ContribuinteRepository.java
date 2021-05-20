@@ -1,7 +1,6 @@
 package br.gov.go.goiania.atendefacil.repository;
 
 import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -13,7 +12,7 @@ import br.gov.go.goiania.atendefacil.domain.Contribuinte;
 public interface ContribuinteRepository extends JpaRepository<Contribuinte, Long>{
 	
 	@Query("FROM  Contribuinte WHERE UPPER(nome) LIKE UPPER(:nome)"
-			+ " AND UPPER(cpfCnpj) LIKE UPPER(:cpfCnpj)")
+			+ " OR UPPER(cpfCnpj) LIKE UPPER(:cpfCnpj)")
 	public List<Contribuinte> findByNomeCpfCnpj(
 			@Param("nome") String nome,
 			@Param("cpfCnpj") String cpfCnpj);

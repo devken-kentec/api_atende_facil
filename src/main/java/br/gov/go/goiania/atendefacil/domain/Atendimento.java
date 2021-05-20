@@ -1,9 +1,15 @@
 package br.gov.go.goiania.atendefacil.domain;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name="atendimento")
@@ -21,8 +27,8 @@ public class Atendimento implements Serializable {
 	@Column(name="servidor", nullable = false, length = 64)
 	private String servidor;
 	
-	@Column(name="realizado", nullable = true)
-	private LocalDateTime realizado;
+	@Column(name="realizado", nullable = true, length = 10)
+	private String realizado;
 	
 	@ManyToOne
 	@JoinColumn(name="detalhamento_servico_id", nullable = false)
@@ -72,11 +78,11 @@ public class Atendimento implements Serializable {
 		this.fila = fila;
 	}
 	
-	public LocalDateTime getRealizado() {
+	public String getRealizado() {
 		return realizado;
 	}
 
-	public void setRealizado(LocalDateTime realizado) {
+	public void setRealizado(String realizado) {
 		this.realizado = realizado;
 	}
 

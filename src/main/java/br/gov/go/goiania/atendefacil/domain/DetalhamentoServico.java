@@ -18,10 +18,12 @@ public class DetalhamentoServico implements Serializable {
 	@Column(name="descricao", nullable = false, length = 100)
 	private String descricao;
 	
+	@Column(name="vinculo", nullable = true, length = 15)
+	private String vinculo;
+	
 	@Column(name="detalhamento", nullable = false, length = 100)
 	private String detalhamento;
-		
-	
+
 	@ManyToOne
 	@JoinColumn(name="servico_id", nullable = false)
 	private Servico servico = new Servico();
@@ -61,10 +63,18 @@ public class DetalhamentoServico implements Serializable {
 	public void setServico(Servico servico) {
 		this.servico = servico;
 	}
+	
+	public String getVinculo() {
+		return vinculo;
+	}
+
+	public void setVinculo(String vinculo) {
+		this.vinculo = vinculo;
+	}
 
 	@Override
 	public String toString() {
-		return "DetalhamentoServico [id=" + id + ", descricao=" + descricao + ", detalhamento=" + detalhamento
-				+ ", servico=" + servico + "]";
+		return "DetalhamentoServico [id=" + id + ", descricao=" + descricao + ", vinculo=" + vinculo + ", detalhamento="
+				+ detalhamento + ", servico=" + servico + "]";
 	}
 }

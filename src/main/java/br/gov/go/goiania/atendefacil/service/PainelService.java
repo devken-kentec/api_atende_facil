@@ -1,12 +1,13 @@
 package br.gov.go.goiania.atendefacil.service;
 
 import java.io.File;
+//import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-import javax.sound.sampled.AudioFormat;
+//import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.DataLine;
+//import javax.sound.sampled.DataLine;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
@@ -352,7 +353,8 @@ public class PainelService {
 	}
 	
 	public void som() {
-		try {
+		/*try {
+			
 		    File yourFile = new File("src\\main\\resources\\static\\teste02.wav");
 		    
 		    AudioInputStream stream;
@@ -370,6 +372,16 @@ public class PainelService {
 		catch (Exception e) {
 			 e.printStackTrace();
 	         System.exit(1);
-		}
+		}*/
+		
+        try {
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("teste02.wav").getAbsoluteFile());
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+            clip.start();
+        } catch (Exception ex) {
+            System.out.println("Erro ao executar SOM!");
+            ex.printStackTrace();
+        }
     }
 }

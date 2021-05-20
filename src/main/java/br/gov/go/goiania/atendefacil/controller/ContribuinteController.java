@@ -40,8 +40,8 @@ public class ContribuinteController {
 	
 	@GetMapping("/buscar")
 	public ResponseEntity<List<Contribuinte>> contribuinteById(
-			@RequestParam(value="nome", required = false, defaultValue = "") String nome,
-			@RequestParam(value="cpfCnpj", required = false, defaultValue = "") String cpfCnpj){
+			@RequestParam(value="nome", required = false, defaultValue = "nome") String nome,
+			@RequestParam(value="cpfCnpj", required = false, defaultValue = "999") String cpfCnpj){
 		return ResponseEntity.ok(cs.buscaAvancada("%" + nome + "%","%" +  cpfCnpj + "%")) ;
 	}
 	

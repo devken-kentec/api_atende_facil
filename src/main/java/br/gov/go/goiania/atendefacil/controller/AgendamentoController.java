@@ -108,6 +108,13 @@ public class AgendamentoController {
 		as.gerarFila(id);
 	}
 	
+	@GetMapping("/liberarAgendamento/{id}")
+	@ResponseStatus(HttpStatus.CREATED)
+	public void excluirAgendamento(@PathVariable("id") Long id) {
+		as.liberarAgendamento(id);
+	}
+	
+	
 	@GetMapping("/exclusaoAgendamento/{gradeId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void excluirAgendamentoGradeId(@PathVariable("gradeId") Long gradeId) {

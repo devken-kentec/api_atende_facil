@@ -22,8 +22,12 @@ public class DetalhamentoServicoService {
 	@Autowired
 	private ServicoRepository sr;
 	
+	public Iterable<DetalhamentoServico> listarServicoAtendimento(){
+		return dsr.detalheServicoAtendimento();
+	}
+	
 	public Iterable<DetalhamentoServico> listarServico(){
-		return dsr.findAll();
+		return dsr.detalheServicoAll();
 	}
 	
 	public Iterable<DetalhamentoServico> selectDetServico(String servico){

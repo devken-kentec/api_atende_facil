@@ -46,7 +46,7 @@ public class AtendimentoService {
 	
 	@Autowired
 	private PainelService ps;
-	
+
 	
 	public Optional<Atendente> findByAtendenteMatricula(String matricula) {
 		return ar.findByAtendenteMatricula(matricula);
@@ -147,16 +147,18 @@ public class AtendimentoService {
 	
 	
 	public void atendimento(AtendimentoDto atendimentoDto) {
+		String data = ds.dataAtualBanco();
 		
-		Optional<DetalhamentoServico> ds = dsr.findById(atendimentoDto.getDetalhamentoServico());
+		Optional<DetalhamentoServico> dss = dsr.findById(atendimentoDto.getDetalhamentoServico());
 		Optional<Fila> f = fr.findById(atendimentoDto.getFila());
+	
 		
-		 Atendimento atendimento = new Atendimento();
+		 Atendimento atendimento = new Atendimento(); 
 		 
-		 atendimento.setRealizado(LocalDateTime.now());
+		 atendimento.setRealizado(data);
 		 atendimento.setServidor(atendimentoDto.getServidor());
 		 atendimento.setDescricao(atendimentoDto.getDescricao());
-		 atendimento.setDetalhamentoServico(ds.get());
+		 atendimento.setDetalhamentoServico(dss.get());
 		 atendimento.setFila(f.get());
 		 
 		 atr.save(atendimento);

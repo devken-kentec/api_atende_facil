@@ -32,5 +32,11 @@ public class DataService {
         String dataFormatada = formatterData.format(agora);
 		return dataFormatada;
 	}
-
+	
+	public String dataAtualBanco() {
+		LocalDateTime agora = LocalDateTime.now();
+	    DateTimeFormatter formatterData = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String dataFormatada = formatterData.format(agora);
+		return dataFormatada;
+	}
 }

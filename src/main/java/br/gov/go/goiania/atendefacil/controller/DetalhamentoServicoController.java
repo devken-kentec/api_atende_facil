@@ -31,6 +31,11 @@ public class DetalhamentoServicoController {
 		return ResponseEntity.ok(dss.listarServico());
 	}
 	
+	@GetMapping("/listar/servico/atendimento")
+	public ResponseEntity<Iterable<DetalhamentoServico>> listarServicoAtendimento(){
+		return ResponseEntity.ok(dss.listarServicoAtendimento());
+	}
+	
 	@GetMapping("/select/{servico}")
 	public ResponseEntity<Iterable<DetalhamentoServico>> selectDetServico(@PathVariable("servico") String servico){
 		
