@@ -28,7 +28,7 @@ public class Acesso implements Serializable {
 	private Servidor servidor = new Servidor();
 	
 	@ManyToOne
-	@JoinColumn(name="unidade_id", nullable = false)
+	@JoinColumn(name="unidade_id", nullable = true)
 	private Unidade unidade = new Unidade();
 	
 	@ManyToOne
