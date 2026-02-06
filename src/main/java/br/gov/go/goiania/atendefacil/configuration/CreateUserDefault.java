@@ -47,7 +47,7 @@ public class CreateUserDefault {
 				sr.save(servidor);
 				
 				Role role = new Role();
-				role.setDescricao("DEV_SYSTEM");
+				role.setDescricao("Administrador");
 				System.out.println(role);
 				rr.save(role);
 				

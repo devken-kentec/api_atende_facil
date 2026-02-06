@@ -15,6 +15,7 @@ import br.gov.go.goiania.atendefacil.repository.AcessoRepository;
 import br.gov.go.goiania.atendefacil.repository.RoleRepository;
 import br.gov.go.goiania.atendefacil.repository.ServidorRepository;
 import br.gov.go.goiania.atendefacil.repository.UnidadeRepository;
+import br.gov.go.goiania.atendefacil.shared.Util;
 
 @Service
 public class AcessoService {
@@ -49,9 +50,9 @@ public class AcessoService {
 	
 	public Acesso logar(String matricula, String senha){
 		
-		Acesso a = ar.logar(matricula, senha);
+		Acesso a = ar.logar(matricula, Util.encodeB64(senha));
 		
-		if(a.getServidor().getMatricula().equals(matricula) && a.getSenha().equals(senha)) {
+		if(a.getServidor().getMatricula().equals(matricula) && a.getSenha().equals(Util.encodeB64(senha))) {
 			this.acesso = a;	
 		}
 		return this.acesso;
